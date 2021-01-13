@@ -1,0 +1,40 @@
+@import pages/main-page
+
+*
+    font-size: 1.1vw
+
+body
+    font-family: 'Montserrat', sans-serif
+    background-color: #000000
+    color: #ffffff
+
+    h1
+        font-family: 'Montserrat Subrayada', sans-serif
+        font-weight: 700
+        font-size: 1.7vw
+    h2
+        font-family: 'Libre Baskerville', serif
+        font-weight: 700
+        font-size: 3.3em
+    p
+        font-family: 'Libre Baskerville', serif
+        font-weight: 700
+        font-size: 1em
+    ul
+        list-style: none
+        li
+            font-family: 'Libre Baskerville', serif
+            font-weight: 700
+            font-size: 1em
+            margin-bottom: 0.9vw
+            line-height: 1.5
+            &:last-child
+                margin-bottom: 2vw
+            &::before
+                content: "-"
+                position: relative
+                left: -5px
+    .container
+        max-width: 1420px
+        margin: 0 auto
+        padding: 0 3.5% 0 3.5%
