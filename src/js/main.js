@@ -193,7 +193,7 @@ new Planet(
     'the Roman god of the underworld',
     'Pluto',
     '.container-planets',
-    '<li>Was discovered on February 18th, 1930 by Clyde Tombaugh of the Lowell Observatory</li><li>In 2006, Pluto was reclassified from a planet to a dwarf planet</li><li>The planet is named for Pluto, the Roman god of the underworld</li><li>It takes Pluto 246.04 Earth years to orbit the Sun</li><li>Pluto has five known moons</li><li>Pluto is smaller than many moons</li><li>Sunlight on Pluto has the same intensity as moonlight on Earth</li>'
+    '<li>Was discovered on February 18th, 1930 by Clyde Tombaugh of the Lowell Observatory.</li><li>In 2006, Pluto was reclassified from a planet to a dwarf planet</li><li>The planet is named for Pluto, the Roman god of the underworld</li><li>It takes Pluto 246.04 Earth years to orbit the Sun</li><li>Pluto has five known moons</li><li>Pluto is smaller than many moons</li><li>Sunlight on Pluto has the same intensity as moonlight on Earth</li>'
 ).render();
 
 
