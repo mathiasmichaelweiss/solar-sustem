@@ -7,6 +7,7 @@ class PlanetLeft {
         this.name = name;
         this.parent = document.querySelector(parentSelector);
         this.listItem = listItem;
+
     }
 
     render() {
@@ -14,27 +15,27 @@ class PlanetLeft {
         const planet = document.createElement('div');
 
         planet.classList.add('planet');
-
+        planet.classList.add('fadeLeft');
 
         planet.innerHTML = `
-        <div class="planet-img">
+        <div class="planet-img fadeBottom">
         </div>
             <div class="planet-content">
-                <div class="number">${this.num}</div>
-                <div class="overhead">
+                <div class="number fadeTop">${this.num}</div>
+                <div class="overhead fadeTop">
                     <div class="overhead__line"></div>
                     <div class="overhead__text">
                         <p>${this.overhead}</p>
                     </div>
                 </div>
-                <div class="planet-title">
+                <div class="planet-title fadeTop">
                     <h2>${this.name}</h2>
                 </div>
                 <div class="planet-facts">
                     <ul>
                         ${this.listItem}
                     </ul>
-                    <div class="more">
+                    <div class="more fadeRight">
                         <p>read more </p><svg width="24" height="17" viewBox="0 0 24 17" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -57,6 +58,7 @@ class Planet {
         this.name = name;
         this.parent = document.querySelector(parentSelector);
         this.listItem = listItem;
+
     }
 
     render() {
@@ -64,25 +66,26 @@ class Planet {
         const planet = document.createElement('div');
 
         planet.classList.add('planet');
+        planet.classList.add('fadeRight');
 
 
         planet.innerHTML = `
             <div class="planet-content">
-                <div class="number">${this.num}</div>
-                <div class="overhead">
+                <div class="number fadeTop">${this.num}</div>
+                <div class="overhead fadeTop">
                     <div class="overhead__line"></div>
                     <div class="overhead__text">
                         <p>${this.overhead}</p>
                     </div>
                 </div>
-                <div class="planet-title">
+                <div class="planet-title fadeTop">
                     <h2>${this.name}</h2>
                 </div>
                 <div class="planet-facts">
                     <ul>
                         ${this.listItem}
                     </ul>
-                    <div class="more">
+                    <div class="more fadeLeft">
                         <p>read more </p><svg width="24" height="17" viewBox="0 0 24 17" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -92,7 +95,7 @@ class Planet {
                     </div>
                 </div>
             </div>
-        <div class="planet-img">
+        <div class="planet-img fadeBottom">
         </div>
     `;
 
@@ -121,7 +124,7 @@ function changeImage() {
         planetImage[7].style = 'background-image: url(src/img/planets/neptune.png); background-size: 130%;';
         planetBlock[5].style = 'width: 50%';
     });
-    console.log(39 - 48);
+
 }
 
 new Planet(
@@ -129,7 +132,8 @@ new Planet(
     'the smallest planet',
     'Mercury',
     '.container-planets',
-    '<li>Does not have any moons or rings.</li><li>Is the smallest planet.</li><li>Is the closest planet to the Sun.</li><li>Your weight on Mercury would be 38% of your weight on Earth.</li><li>A day on the surface of Mercury lasts 176 Earth days.</li><li>A year on Mercury takes 88 Earth days.</li><li>It’s not known who discovered Mercury.</li>'
+    '<li>Does not have any moons or rings.</li><li>Is the smallest planet.</li><li>Is the closest planet to the Sun.</li><li>Your weight on Mercury would be 38% of your weight on Earth.</li><li>A day on the surface of Mercury lasts 176 Earth days.</li><li>A year on Mercury takes 88 Earth days.</li><li>It’s not known who discovered Mercury.</li>',
+    'fadeLeft'
 ).render();
 
 new PlanetLeft(
@@ -196,6 +200,39 @@ new Planet(
     '<li>Was discovered on February 18th, 1930 by Clyde Tombaugh of the Lowell Observatory.</li><li>In 2006, Pluto was reclassified from a planet to a dwarf planet</li><li>The planet is named for Pluto, the Roman god of the underworld</li><li>It takes Pluto 246.04 Earth years to orbit the Sun</li><li>Pluto has five known moons</li><li>Pluto is smaller than many moons</li><li>Sunlight on Pluto has the same intensity as moonlight on Earth</li>'
 ).render();
 
-
-
 changeImage();
+
+
+// Паралакс и скролл
+const planets = document.querySelectorAll('.planet-img');
+
+function paralaxThis(elem, trX, trY) {
+    window.addEventListener('mousemove', function (e) {
+        const paralaxItem = document.querySelector(elem);
+
+        let x = e.clientX / window.innerWidth;
+        let y = e.clientY / window.innerHeight;
+        paralaxItem.style.transform = 'translate(-' + x * trX + 'px, -' + y * trY + 'px)';
+
+    });
+}
+
+paralaxThis('.first-planets-big__earth', 15, 5);
+paralaxThis('.first-planets-moon', 8, 3);
+
+/* planets.forEach(planet => {
+    window.addEventListener('mousemove', function (e) {
+
+        let x = e.clientX / window.innerWidth;
+        let y = e.clientY / window.innerHeight;
+        planet.style.transform = 'translate(-' + x * 3 + 'px, -' + y * 3 + 'px)';
+    });
+}); */
+
+window.addEventListener('scroll', function (e) {
+    let scrollResult = window.pageYOffset;
+    /* console.log(scrollResult); */
+    const schadow = document.querySelector('.linear-black');
+
+    schadow.style.height = (30 + scrollResult) + '%';
+});
