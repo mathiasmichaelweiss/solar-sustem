@@ -87,6 +87,11 @@
   height: 250px;
 }
 
+.bg-planets .container-planets {
+  position: relative;
+  z-index: 1;
+}
+
 .bg-planets .container .planet {
   position: relative;
   display: -webkit-box;
