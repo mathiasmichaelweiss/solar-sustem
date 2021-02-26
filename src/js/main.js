@@ -14,29 +14,34 @@ class PlanetLeft {
     const modal = document.createElement("div");
 
     planet.classList.add("planet");
-    planet.classList.add("fadeLeft");
     modal.classList.add("modal");
     modal.classList.add("hidden");
 
+    if (document.body.clientWidth >= 450) {
+      planet.classList.add("fadeLeft");
+    } else {
+      planet.classList.remove("fadeLeft");
+    }
+
     planet.innerHTML = `
-        <div class="planet-img fadeBottom">
+        <div class="planet-img fadeBottom bottom">
         </div>
             <div class="planet-content">
-                <div class="number fadeTop">${this.num}</div>
-                <div class="overhead fadeTop">
+                <div class="number fadeTop top">${this.num}</div>
+                <div class="overhead fadeTop top">
                     <div class="overhead__line"></div>
                     <div class="overhead__text">
                         <p>${this.overhead}</p>
                     </div>
                 </div>
-                <div class="planet-title fadeTop">
+                <div class="planet-title fadeTop top">
                     <h2>${this.name}</h2>
                 </div>
                 <div class="planet-facts">
                     <ul>
                         ${this.listItem}
                     </ul>
-                    <div class="more fadeRight">
+                    <div class="more fadeRight right">
                         <p>read more </p><svg width="24" height="17" viewBox="0 0 24 17" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -90,27 +95,32 @@ class Planet {
     const modal = document.createElement("div");
 
     planet.classList.add("planet");
-    planet.classList.add("fadeRight");
     modal.classList.add("modal");
     modal.classList.add("hidden");
 
+    if (document.body.clientWidth >= 450) {
+      planet.classList.add("fadeRight");
+    } else {
+      planet.classList.remove("fadeRight");
+    }
+
     planet.innerHTML = `
             <div class="planet-content">
-                <div class="number fadeTop">${this.num}</div>
-                <div class="overhead fadeTop">
+                <div class="number fadeTop top">${this.num}</div>
+                <div class="overhead fadeTop top">
                     <div class="overhead__line"></div>
                     <div class="overhead__text">
                         <p>${this.overhead}</p>
                     </div>
                 </div>
-                <div class="planet-title fadeTop">
+                <div class="planet-title fadeTop top">
                     <h2>${this.name}</h2>
                 </div>
                 <div class="planet-facts">
                     <ul>
                         ${this.listItem}
                     </ul>
-                    <div class="more fadeLeft">
+                    <div class="more fadeLeft left">
                         <p>read more </p><svg width="24" height="17" viewBox="0 0 24 17" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -120,7 +130,7 @@ class Planet {
                     </div>
                 </div>
             </div>
-        <div class="planet-img fadeBottom">
+        <div class="planet-img fadeBottom bottom">
         </div>
     `;
 
@@ -174,6 +184,10 @@ function changeImage() {
     planetImage[7].style =
       "background-image: url(src/img/planets/neptune.png); background-size: 130%;";
     planetBlock[5].style = "width: 50%";
+    if (document.body.clientWidth <= 450) {
+      planetBlock[5].style = "width: 100%";
+      planetImage[5].style = `background-image: url(src/img/planets/saturn.png); width: 100%; position: absolute; left: 0; top: -12rem`;
+    }
   });
   miniPlanets.forEach((item, i) => {
     item.style = `background-image: url(${planetsImages[i]})`;
@@ -283,34 +297,60 @@ factsGround.forEach(ground => {
   });
 });
 
-modals.forEach((modal, j) => {
-  if (!modal.classList.contains("hidden")) {
-    document.style = "overflow: hidden;";
-  }
-  moreAboutPlanets.forEach((more, i) => {
-    more.addEventListener("click", () => {
-      modals[i].classList.remove("hidden");
+function modalSettings(bool) {
+  if (bool === true) {
+    modals.forEach((modal, j) => {
+      if (!modal.classList.contains("hidden")) {
+        document.style = "overflow: hidden;";
+      }
+      moreAboutPlanets.forEach((more, i) => {
+        more.addEventListener("click", () => {
+          modals[i].classList.remove("hidden");
+        });
+      });
+      document.addEventListener("keydown", e => {
+        if (e.code === "Escape") {
+          modals[j].classList.add("hidden");
+        }
+      });
+
+      miniPlanets[j].addEventListener("mouseover", () => {
+        closeModalIcons[j].classList.add("close-modal-icon-active");
+      });
+
+      miniPlanets[j].addEventListener("mouseout", () => {
+        closeModalIcons[j].classList.remove("close-modal-icon-active");
+      });
+
+      closeModalBtn[j].addEventListener("click", () => {
+        modals[j].classList.add("hidden");
+      });
     });
-  });
-  document.addEventListener("keydown", e => {
-    if (e.code === "Escape") {
-      modals[j].classList.add("hidden");
-    }
-    /* console.log(e.code); // выдает название клавищи на которую кликнули*/
-  });
+  } else {
+    modals.forEach((modal, j) => {
+      if (!modal.classList.contains("hidden")) {
+        document.style = "overflow: hidden;";
+      }
+      moreAboutPlanets.forEach((more, i) => {
+        more.addEventListener("click", () => {
+          modals[i].classList.remove("hidden");
+          closeModalIcons[i].classList.add("close-modal-icon-active");
+        });
+      });
+      document.addEventListener("keydown", e => {
+        if (e.code === "Escape") {
+          modals[j].classList.add("hidden");
+        }
+      });
 
-  miniPlanets[j].addEventListener("mouseover", () => {
-    closeModalIcons[j].classList.add("close-modal-icon-active");
-  });
+      closeModalBtn[j].addEventListener("click", () => {
+        modals[j].classList.add("hidden");
+      });
+    });
+  }
+}
 
-  miniPlanets[j].addEventListener("mouseout", () => {
-    closeModalIcons[j].classList.remove("close-modal-icon-active");
-  });
-
-  closeModalBtn[j].addEventListener("click", () => {
-    modals[j].classList.add("hidden");
-  });
-});
+console.log(document.body.clientWidth);
 
 // Паралакс и скролл
 const planets = document.querySelectorAll(".planet-img");
@@ -326,22 +366,26 @@ function paralaxThis(elem, trX, trY) {
   });
 }
 
-paralaxThis(".first-planets-big__earth", 15, 5);
-paralaxThis(".first-planets-moon", 8, 3);
+function scrollParalax(boolean) {
+  if (boolean === true) {
+    window.addEventListener("scroll", function (e) {
+      let scrollResult = window.pageYOffset;
+      /* console.log(scrollResult); */
+      const schadow = document.querySelector(".linear-black");
 
-/* planets.forEach(planet => {
-    window.addEventListener('mousemove', function (e) {
-
-        let x = e.clientX / window.innerWidth;
-        let y = e.clientY / window.innerHeight;
-        planet.style.transform = 'translate(-' + x * 3 + 'px, -' + y * 3 + 'px)';
+      schadow.style.height = 30 + scrollResult + "%";
     });
-}); */
+  }
+}
 
-window.addEventListener("scroll", function (e) {
-  let scrollResult = window.pageYOffset;
-  /* console.log(scrollResult); */
-  const schadow = document.querySelector(".linear-black");
+if (document.body.clientWidth <= 450) {
+  scrollParalax(true);
 
-  schadow.style.height = 30 + scrollResult + "%";
-});
+  modalSettings(false);
+} else {
+  modalSettings(true);
+
+  paralaxThis(".first-planets-big__earth", 15, 5);
+  paralaxThis(".first-planets-moon", 8, 3);
+  scrollParalax(true);
+}

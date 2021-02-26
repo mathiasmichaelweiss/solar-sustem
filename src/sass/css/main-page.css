@@ -120,7 +120,7 @@
 
 .bg-planets .container .planet .planet-content {
   position: relative;
-  width: 50%;
+  width: 100%;
 }
 
 .bg-planets .container .planet .planet-content .overhead {

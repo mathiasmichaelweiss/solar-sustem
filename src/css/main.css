@@ -120,7 +120,7 @@
 
 .bg-planets .container .planet .planet-content {
   position: relative;
-  width: 50%;
+  width: 100%;
 }
 
 .bg-planets .container .planet .planet-content .overhead {
@@ -330,29 +330,30 @@ body {
 body h1 {
   font-family: 'Montserrat Subrayada', sans-serif;
   font-weight: 700;
-  font-size: 1.7em;
+  font-size: 1.7rem;
 }
 
 body h2 {
   font-family: 'Libre Baskerville', serif;
   font-weight: 700;
-  font-size: 3.3em;
+  font-size: 3.3rem;
 }
 
 body p {
   font-family: 'Libre Baskerville', serif;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 body ul {
   list-style: none;
+  width: 100%;
 }
 
 body ul li {
   font-family: 'Libre Baskerville', serif;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 1rem;
   margin-bottom: 0.9vw;
   line-height: 1.5;
   /** &::before
@@ -369,5 +370,229 @@ body .container {
   max-width: 1420px;
   margin: 0 auto;
   padding: 0 3.5% 0 3.5%;
+}
+
+@media (max-width: 450px) {
+  .bg-planets {
+    position: relative;
+    overflow: hidden;
+    /** background-image: url(../img/bg-planets.jpg) **/
+    /** background-position: center **/
+    /** background-repeat: no-repeat **/
+    width: 100%;
+    z-index: 100;
+    padding: 5rem 0 5rem 0;
+  }
+  .bg-planets .linear-black2 {
+    z-index: 90;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transition: top 0.5s;
+    transition: top 0.5s;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(11.06%, #000000), color-stop(84.92%, rgba(0, 0, 0, 0)));
+    background: linear-gradient(180deg, #000000 11.06%, rgba(0, 0, 0, 0) 84.92%);
+    width: 100%;
+    height: 250px;
+  }
+  .bg-planets .container-planets {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  .bg-planets .container-planets:first-child {
+    margin-top: 10rem;
+  }
+  .bg-planets .container-planets .planet {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 700px;
+    width: 100%;
+    z-index: 99;
+    padding-bottom: 10rem;
+  }
+  .bg-planets .container-planets .planet .number {
+    position: absolute;
+    font-size: 12.75vw;
+    opacity: 0.1;
+    top: -5rem;
+    left: 0;
+  }
+  .bg-planets .container-planets .planet .planet-content {
+    position: absolute;
+    width: 100%;
+  }
+  .bg-planets .container-planets .planet .planet-content .overhead {
+    margin-bottom: 1.4vw;
+    color: #FBD784;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: .5rem 0 .5rem 0;
+  }
+  .bg-planets .container-planets .planet .planet-content .overhead__line {
+    width: 15%;
+    height: 3px;
+    background: #FBD784;
+  }
+  .bg-planets .container-planets .planet .planet-content .overhead__text {
+    margin-left: 5%;
+    width: 75%;
+  }
+  .bg-planets .container-planets .planet .planet-content .planet-title {
+    margin-bottom: 1.4vw;
+    margin: 2rem 0 2rem 0;
+  }
+  .bg-planets .container-planets .planet .planet-content .planet-facts {
+    margin: 2rem 0 2rem 0;
+  }
+  .bg-planets .container-planets .planet .planet-content .planet-facts .more {
+    margin: 2rem 0 2rem 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    cursor: pointer;
+  }
+  .bg-planets .container-planets .planet .planet-content .planet-facts .more p {
+    color: #FBD784;
+    margin-right: 1rem;
+  }
+  .bg-planets .container-planets .planet .planet-img {
+    top: -27rem;
+    position: relative;
+    background-image: url(../img/planets/Mercury.png);
+    background-size: 85%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 60%;
+    height: 30%;
+  }
+  .modal {
+    width: 80%;
+    height: 300px;
+    background: rgba(9, 9, 9, 0.99);
+    left: 6%;
+    margin: 0 auto;
+    z-index: 1000;
+    padding: 40px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+  .modal .modal-top {
+    margin-bottom: 2vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .modal .modal-top-text-block_title {
+    margin-bottom: 2vw;
+  }
+  .modal .modal-top-text-block_subtitle {
+    font-size: 1.5rem;
+  }
+  .modal .modal-top_mini-planet {
+    background-image: url(../img/planets/Mercury.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10vw;
+    height: 10vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .modal .modal-top_mini-planet .close-modal {
+    cursor: pointer;
+    width: 35px;
+    height: 4px;
+    margin-top: .5rem;
+    margin-right: .5rem;
+  }
+  .modal .modal-top_mini-planet .close-modal .close-modal-icon {
+    background-color: #ffffff;
+    width: 35px;
+    height: 4px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 0;
+    -webkit-transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s, -webkit-transform 0.2s ease-in 0.2s;
+  }
+  .modal .modal-top_mini-planet .close-modal .close-modal-icon::after {
+    content: '';
+    display: block;
+    background-color: #ffffff;
+    width: 35px;
+    height: 4px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    opacity: 0;
+    -webkit-transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s, -webkit-transform 0.2s ease-in 0.2s;
+  }
+  .modal .modal-top_mini-planet .close-modal .close-modal-icon-active {
+    background-color: #ffffff;
+    width: 35px;
+    height: 4px;
+    -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+    opacity: 1;
+    -webkit-transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s, -webkit-transform 0.2s ease-in 0.2s;
+  }
+  .modal .modal-top_mini-planet .close-modal .close-modal-icon-active::after {
+    content: '';
+    display: block;
+    background-color: #ffffff;
+    width: 35px;
+    height: 4px;
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    opacity: 1;
+    -webkit-transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, -webkit-transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s;
+    transition: opacity .5s, top 0.2s linear, transform 0.2s ease-in 0.2s, -webkit-transform 0.2s ease-in 0.2s;
+  }
+  .modal .modal-facts-ground {
+    height: 65%;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .modal .modal-facts {
+    padding-top: 1rem;
+  }
+  .modal .modal_fact {
+    font-size: 1.5vw;
+  }
 }
 /*# sourceMappingURL=main.css.map */
